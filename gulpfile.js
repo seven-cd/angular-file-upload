@@ -7,7 +7,9 @@ let webpackStream = require('webpack-stream');
 
 let WebpackConfig = require('./WebpackConfig');
 let descriptor = require('./package.json');
-
+// Remove @nsoft/ space from project name before sending it to Webpack,
+// to avoid creating `@nsoft/` subfolder in `dist` folder when running `gulp $projectName/build` task
+descriptor.name = descriptor.name.replace('@nsoft/', '');
 
 let config = new WebpackConfig(descriptor, {
   src: './src/',
